@@ -78,8 +78,6 @@ class ChatLogActivity : AppCompatActivity() {
             override fun onCancelled(p0: DatabaseError) {
 
             }
-
-
         })
     }
 
