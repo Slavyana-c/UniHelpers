@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "377045780098",
+    "firebase_url": "https://unihelperskotlin.firebaseio.com",
+    "project_id": "unihelperskotlin",
+    "storage_bucket": "unihelperskotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:377045780098:android:2a754d5bd064bf05",
+        "android_client_info": {
+          "package_name": "com.example.user.unihelpers_kotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "377045780098-skgh3tsdoqsta0igl36b65hvt3i6vatm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArf3U4Pd6b7N3lFM2psOsiHCWG3TmsFzc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
