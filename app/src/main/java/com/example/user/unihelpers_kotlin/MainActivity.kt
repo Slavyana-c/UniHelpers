@@ -19,32 +19,32 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Function performed when login is pressed
     private fun performLogin() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
 
+        // Checks if either field is empty
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
             return
         }
-
 
         //Firebase authentication of email and password
         FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if(!it.isSuccessful) return@addOnCompleteListener
                 else Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show()
+
+                // Take user to LatestMessagesActivity
                 val intent = Intent(this, LatestMessagesActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
             .addOnFailureListener {
+
+                // Show error message
                 Toast.makeText(this, "${it.message}", Toast.LENGTH_SHORT).show()
             }
-
-
-        Log.d("MainActivity", "Email is: " + email)
-        Log.d("MainActivity", "Password is: $password")
-
     }
 }
