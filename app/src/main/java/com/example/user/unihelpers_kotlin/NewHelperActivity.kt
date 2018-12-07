@@ -43,25 +43,24 @@ class NewHelperActivity : AppCompatActivity() {
        val USER_KEY = "USER_KEY"
     }
 
+    // Reads and displays users from databse
     private fun fetchUsers() {
         val reference = FirebaseDatabase.getInstance().getReference("/users")
-        Log.d("New Helper", "$reference")
         reference.addListenerForSingleValueEvent(object: ValueEventListener{
             override fun onDataChange(p0: DataSnapshot) {
-                Log.d("New Helper", "in change")
                 val adapter = GroupAdapter<ViewHolder>()
+
+                // Go through the users
                 p0.children.forEach{
-                    Log.d("New Helper", it.toString())
                     val user= it.getValue(User::class.java)
                     if(user != null && user.helper) {
                         adapter.add(UserItem(user))
                     }
                     adapter.setOnItemClickListener { item, view ->
 
+                        // When a row is clicked
                         val userItem = item as UserItem
-
                         val intent = Intent(view.context, ChatLogActivity::class.java)
-                       //intent.putExtra(USER_KEY, userItem.user.username)
                         intent.putExtra(USER_KEY, userItem.user)
                         startActivity(intent)
                         finish()
@@ -69,10 +68,7 @@ class NewHelperActivity : AppCompatActivity() {
                 }
                 newHelperRecyclerView.adapter = adapter
             }
-
-
             override fun onCancelled(p0: DatabaseError) {
-
             }
         })
     }
