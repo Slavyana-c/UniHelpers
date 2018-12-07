@@ -50,6 +50,7 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     val latestMessagesMap = HashMap<String, ChatLogActivity.ChatMessage>()
 
+    // Refresh the recyclerview to show new messages
     private fun refreshRecyclerViewMessages() {
         adapter.clear()
         latestMessagesMap.values.forEach {
@@ -57,6 +58,7 @@ class LatestMessagesActivity : AppCompatActivity() {
         }
     }
 
+    // Check database for new messages
     private fun listenForLatestMessages() {
         val fromId = FirebaseAuth.getInstance().uid
         val ref = FirebaseDatabase.getInstance().getReference("/latest-messages/$fromId")
@@ -83,6 +85,7 @@ class LatestMessagesActivity : AppCompatActivity() {
         })
     }
 
+    // Latest Message Row Class
     class LatestMessageRow(val chatMessage: ChatLogActivity.ChatMessage): Item<ViewHolder>() {
         var chatPartnerUser : User? = null
         override fun bind(viewHolder: ViewHolder, position: Int) {
@@ -115,20 +118,14 @@ class LatestMessagesActivity : AppCompatActivity() {
 
     val adapter = GroupAdapter<ViewHolder>()
 
-//    private fun setupDummyRows() {
-//
-//        adapter.add(LatestMessageRow())
-//        adapter.add(LatestMessageRow())
-//        adapter.add(LatestMessageRow())
-//        adapter.add(LatestMessageRow())
-//    }
-
+    // Options Menu items
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.menu_goals -> {
-
+                // To be implemented
             }
 
+            // Sign out
             R.id.menu_sign_out -> {
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this, MainActivity::class.java)
@@ -140,6 +137,7 @@ class LatestMessagesActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    // Options Menu
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.nav_menu, menu)
         return super.onCreateOptionsMenu(menu)
